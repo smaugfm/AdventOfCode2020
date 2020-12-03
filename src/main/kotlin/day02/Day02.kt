@@ -1,4 +1,4 @@
-package day2
+package day02
 
 import com.google.auto.service.AutoService
 import common.DayTaskBase
