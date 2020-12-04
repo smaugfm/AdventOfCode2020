@@ -3,7 +3,7 @@ package common
 import java.lang.IllegalArgumentException
 
 abstract class DayTaskBase(override val day: Int) : IDayTask {
-	private val puzzleInput: String by lazy {
+	protected val puzzleInput: String by lazy {
 		DayTaskBase::class.java.getResource(DAY_TXT_TEMPLATE.format(day))?.readText()?.trim()
 			?: throw IllegalArgumentException("No file ${DAY_TXT_TEMPLATE.format(day)} found in resources.")
 	}

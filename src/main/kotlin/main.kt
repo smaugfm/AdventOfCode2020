@@ -3,7 +3,7 @@ import java.util.*
 
 val days = ServiceLoader.load(IDayTask::class.java).toList().map { it.day to it }.toMap()
 
-fun currentDayTask(): IDayTask = days[3]!!
+fun currentDayTask(): IDayTask = days[4]!!
 
 fun main(args: Array<String>) {
 	val task = currentDayTask()
