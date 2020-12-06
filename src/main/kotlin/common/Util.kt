@@ -10,3 +10,6 @@ fun <T, U> Sequence<T>.product(other: Sequence<U>) =
 		other.map { fromRight -> fromLeft to fromRight }
 	}
 
+val blankLine = System.lineSeparator() + System.lineSeparator()
+val newLine: String = System.lineSeparator()
+

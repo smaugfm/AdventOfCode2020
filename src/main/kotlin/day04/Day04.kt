@@ -3,6 +3,7 @@ package day04
 import com.google.auto.service.AutoService
 import common.DayTaskBase
 import common.IDayTask
+import common.blankLine
 import kotlin.reflect.full.companionObjectInstance
 
 @AutoService(IDayTask::class)
@@ -17,8 +18,7 @@ class Day04 : DayTaskBase(4) {
 	private val optionalCodes = setOf(PassportField.CountryID.code)
 
 	private fun parsePassportSet(): List<PassportRaw> =
-		puzzleInput
-			.split(System.lineSeparator() + System.lineSeparator())
+		puzzleBlocks
 			.map(PassportRaw::parse)
 
 	private fun validateCodes(present: Set<String>) =

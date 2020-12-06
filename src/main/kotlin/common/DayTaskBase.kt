@@ -1,7 +1,5 @@
 package common
 
-import java.lang.IllegalArgumentException
-
 abstract class DayTaskBase(override val day: Int) : IDayTask {
 	protected val puzzleInput: String by lazy {
 		DayTaskBase::class.java.getResource(DAY_TXT_TEMPLATE.format(day))?.readText()?.trim()
@@ -9,15 +7,19 @@ abstract class DayTaskBase(override val day: Int) : IDayTask {
 	}
 
 	protected val puzzleLines by lazy {
-		puzzleInput.split(System.lineSeparator()).filter { it.isNotBlank() }
+		puzzleInput.split(newLine).filter { it.isNotBlank() }
 	}
 
-	override fun runFirst() {
-		println("Day $day. First task result: ${firstResult()}")
+	protected val puzzleBlocks by lazy {
+		puzzleInput.split(blankLine).filter { it.isNotBlank() }
 	}
 
-	override fun runSecond() {
-		println("Day $day. Second task result: ${secondResult()}")
+	override fun runFirst(): String {
+		return "Day ${"%02d".format(day)}. First task result: ${firstResult()}"
+	}
+
+	override fun runSecond(): String {
+		return "Day ${"%02d".format(day)}. Second task result: ${secondResult()}"
 	}
 
 	private fun firstResult() = first().also {

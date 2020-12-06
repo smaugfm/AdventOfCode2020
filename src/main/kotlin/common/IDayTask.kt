@@ -2,6 +2,6 @@ package common
 
 interface IDayTask {
 	val day: Int
-	fun runFirst()
-	fun runSecond()
+	fun runFirst(): String
+	fun runSecond(): String
 }

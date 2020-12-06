@@ -1,5 +1,6 @@
 import common.IDayTask
 import java.util.*
+import kotlin.streams.toList
 
 val days = ServiceLoader.load(IDayTask::class.java).toList().map { it.day to it }.toMap()
 
@@ -7,9 +8,27 @@ fun currentDayTask(): IDayTask = days[6]!!
 
 fun main(args: Array<String>) {
 	val task = currentDayTask()
-	when {
-		args[0] == "first" -> task.runFirst()
-		args[0] == "second" -> task.runSecond()
-		else -> println("No argument provided.")
+	args[0].let {
+		when (it) {
+			"first" -> println(task.runFirst())
+			"second" -> println(task.runSecond())
+			"all" -> all()
+			else -> println("No argument provided.")
+		}
 	}
+}
+
+fun all() {
+	days
+		.toList()
+		.map {
+			it.second.let {
+				Pair({ it.runFirst() }, { it.runSecond() })
+			}
+		}.flatMap { it.toList() }
+		.parallelStream()
+		.map { it() }
+		.toList()
+		.sorted()
+		.forEach { println(it) }
 }

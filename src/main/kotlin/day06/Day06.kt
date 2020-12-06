@@ -6,29 +6,19 @@ import common.IDayTask
 
 @AutoService(IDayTask::class)
 class Day06 : DayTaskBase(6) {
-	override fun first(): Any {
-		return puzzleInput
-			.split(System.lineSeparator() + System.lineSeparator())
-			.map {
-				it
-					.replace(System.lineSeparator(), "")
-					.toSet()
-					.count()
-			}.sum()
-	}
-
-	override val firstResultForTests = 6903
-	override fun second(): Any {
-		return puzzleInput
-			.split(System.lineSeparator() + System.lineSeparator())
+	private fun process(reducer: (Set<Char>, Set<Char>) -> Set<Char>) =
+		puzzleBlocks
 			.map { line ->
 				line
 					.lines()
 					.map { it.toSet() }
-					.reduce { a, b -> a.intersect(b) }
+					.reduce(reducer)
 					.count()
 			}.sum()
-	}
 
+	override fun first() = process { a, b -> a.union(b) }
+	override val firstResultForTests = 6903
+
+	override fun second() = process { a, b -> a.intersect(b) }
 	override val secondResultForTests = 3493
 }
