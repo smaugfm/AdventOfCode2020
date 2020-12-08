@@ -4,7 +4,7 @@ import kotlin.streams.toList
 
 val days = ServiceLoader.load(IDayTask::class.java).toList().map { it.day to it }.toMap()
 
-fun currentDayTask(): IDayTask = days[7]!!
+fun currentDayTask(): IDayTask = days[8]!!
 
 fun main(args: Array<String>) {
 	val task = currentDayTask()

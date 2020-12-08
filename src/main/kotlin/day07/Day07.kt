@@ -7,7 +7,7 @@ import java.lang.Integer.parseInt
 
 @AutoService(IDayTask::class)
 class Day07 : DayTaskBase(7) {
-	val containerColorAndOthersPatern =
+	val containerColorAndOthersPattern =
 		Regex("([\\w\\s]+)bags contain ([\\w,\\s]+).")
 	val bagQuantityPattern = Regex("(\\d+) (\\w+ \\w+)")
 
@@ -21,7 +21,7 @@ class Day07 : DayTaskBase(7) {
 
 	private fun makeBagsRegistry() =
 		puzzleLines.map { line ->
-			val m = containerColorAndOthersPatern.matchEntire(line)!!
+			val m = containerColorAndOthersPattern.matchEntire(line)!!
 			val containerColor = m.groupValues[1]
 			val others: List<BagsQuantity> = if (m.groupValues[2] == noBagsColor)
 				listOf(BagsQuantity.Empty)
