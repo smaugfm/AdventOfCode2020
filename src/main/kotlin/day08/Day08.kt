@@ -3,20 +3,20 @@ package day08
 import com.google.auto.service.AutoService
 import common.DayTaskBase
 import common.IDayTask
-import java.lang.IllegalArgumentException
 import java.lang.Integer.parseInt
 
 @AutoService(IDayTask::class)
-class Day08: DayTaskBase(8) {
-	private fun exec(lines: List<String>): Any {
+class Day08 : DayTaskBase(8) {
+	class InfiniteLoopException(val acc: Int) : Exception(acc.toString())
+
+	private fun exec(lines: List<String>): Int {
 		var cur = 0
 		val visited = mutableSetOf<Int>()
 		var acc = 0
 		val r = Regex("\\w{3}\\s+([\\-+])(\\d+)")
-		while (visited.add(cur)) {
-			if (cur >= lines.size) {
-				throw IllegalArgumentException(acc.toString())
-			}
+		while (cur < lines.size) {
+			if (!visited.add(cur))
+				throw InfiniteLoopException(acc)
 
 			val line = lines[cur]
 			val param = parseInt(r.matchEntire(line)!!.groupValues[2])
@@ -36,33 +36,39 @@ class Day08: DayTaskBase(8) {
 		return acc
 	}
 
-	override fun first() = exec(puzzleLines)
+	override fun first() = try {
+		exec(puzzleLines)
+		"No loop"
+	} catch (e: InfiniteLoopException) {
+		e.acc
+	}
+
 	override val firstResultForTests = 1179
 
-	override fun second(): Any? {
-		val indexes = mutableListOf<Int>()
-		val lines = puzzleLines.toMutableList()
-		lines.forEachIndexed { i, x ->
-			if (x.substring(0, 3) == "nop" || x.substring(0, 3) == "jmp")
-				indexes.add(i)
-		}
+	override fun second(): Any {
+		val lines = puzzleLines
+		val linesCopy = lines.toMutableList()
 
-		indexes.forEach {
-			val line = lines[it]
-			if (line.substring(0, 3) == "jmp") {
-				lines[it] = "nop" + line.substring(3)
-			} else {
-				lines[it] = "jmp" + line.substring(3)
+		for ((i, line) in lines.withIndex()) {
+			linesCopy[i] = when (line.substring(0, 3)) {
+				"nop" -> {
+					"jmp" + lines[i].substring(3)
+				}
+				"jmp" -> {
+					"nop" + lines[i].substring(3)
+				}
+				else -> continue;
 			}
 
 			try {
-				exec(lines)
-				lines[it] = line
-			} catch(e: IllegalArgumentException) {
-				return e.message
+				return exec(linesCopy)
+			} catch (e: InfiniteLoopException) {
+				linesCopy[i] = line
 			}
 		}
 
-		return "not right"
+		return "All loops"
 	}
+
+	override val secondResultForTests = 1089
 }
