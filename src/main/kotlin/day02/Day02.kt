@@ -47,8 +47,8 @@ class Day02 : DayTaskBase(2) {
 			.count()
 	}
 
-	override val firstResultForTests = 572
-	override val secondResultForTests = 306
+	override val firstResult = 572
+	override val secondResult = 306
 
 	companion object {
 		private val lineRegex = Regex("(\\d+)-(\\d+) ([a-z]): ([a-z]+)")

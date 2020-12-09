@@ -43,6 +43,6 @@ class Day04 : DayTaskBase(4) {
 			}
 			.count()
 
-	override val firstResultForTests = 233
-	override val secondResultForTests = 111
+	override val firstResult = 233
+	override val secondResult = 111
 }

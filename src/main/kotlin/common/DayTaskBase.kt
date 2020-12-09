@@ -15,21 +15,21 @@ abstract class DayTaskBase(override val day: Int) : IDayTask {
 	}
 
 	override fun runFirst(): String {
-		return "Day ${"%02d".format(day)}. First task result: ${firstResult()}"
+		return "Day ${"%02d".format(day)}. First task result: ${getAndCheckFirst()}"
 	}
 
 	override fun runSecond(): String {
-		return "Day ${"%02d".format(day)}. Second task result: ${secondResult()}"
+		return "Day ${"%02d".format(day)}. Second task result: ${getAndCheckSecond()}"
 	}
 
-	private fun firstResult() = first().also {
-		if (firstResultForTests != null)
-			check(it == firstResultForTests)
+	private fun getAndCheckFirst() = first().also {
+		if (firstResult != null)
+			check(it == firstResult)
 	}
 
-	private fun secondResult() = second().also {
-		if (secondResultForTests != null)
-			check(it == secondResultForTests)
+	private fun getAndCheckSecond() = second().also {
+		if (secondResult != null)
+			check(it == secondResult)
 	}
 
 	abstract fun first(): Any
@@ -37,8 +37,8 @@ abstract class DayTaskBase(override val day: Int) : IDayTask {
 		return null
 	}
 
-	protected open val firstResultForTests: Any? = null
-	protected open val secondResultForTests: Any? = null
+	protected open val firstResult: Any? = null
+	protected open val secondResult: Any? = null
 
 	companion object {
 		private const val DAY_TXT_TEMPLATE = "/day%02d.txt"

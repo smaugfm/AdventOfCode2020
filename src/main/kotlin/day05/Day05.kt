@@ -39,7 +39,7 @@ class Day05 : DayTaskBase(5) {
 				row * 8 + col
 			}.maxByOrNull { it }!!
 
-	override val firstResultForTests = 991
+	override val firstResult = 991
 
 	override fun second(): Any {
 		val ids = puzzleLines
@@ -55,5 +55,5 @@ class Day05 : DayTaskBase(5) {
 		return (allIds - ids).first()
 	}
 
-	override val secondResultForTests = 534
+	override val secondResult = 534
 }

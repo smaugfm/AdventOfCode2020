@@ -59,7 +59,7 @@ class Day03 : DayTaskBase(3) {
 	}
 
 	override fun first() = getTreesOnSlope(3, 1)
-	override val firstResultForTests = 167
+	override val firstResult = 167
 
 	override fun second(): Any {
 		val trees = listOf(
@@ -73,5 +73,5 @@ class Day03 : DayTaskBase(3) {
 		return trees.reduce { a, b -> a * b }
 	}
 
-	override val secondResultForTests = 736527114
+	override val secondResult = 736527114
 }

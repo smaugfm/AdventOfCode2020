@@ -57,7 +57,7 @@ class Day07 : DayTaskBase(7) {
 			.count()
 	}
 
-	override val firstResultForTests = 287
+	override val firstResult = 287
 
 	override fun second(): Any {
 		val bags = makeBagsRegistry()
@@ -74,5 +74,5 @@ class Day07 : DayTaskBase(7) {
 		return countSubBags(shinyGoldColor)
 	}
 
-	override val secondResultForTests = 48160
+	override val secondResult = 48160
 }

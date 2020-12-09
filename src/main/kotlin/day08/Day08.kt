@@ -43,7 +43,7 @@ class Day08 : DayTaskBase(8) {
 		e.acc
 	}
 
-	override val firstResultForTests = 1179
+	override val firstResult = 1179
 
 	override fun second(): Any {
 		val lines = puzzleLines
@@ -70,5 +70,5 @@ class Day08 : DayTaskBase(8) {
 		return "All loops"
 	}
 
-	override val secondResultForTests = 1089
+	override val secondResult = 1089
 }

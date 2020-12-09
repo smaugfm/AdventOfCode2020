@@ -17,8 +17,8 @@ class Day06 : DayTaskBase(6) {
 			}.sum()
 
 	override fun first() = process { a, b -> a.union(b) }
-	override val firstResultForTests = 6903
+	override val firstResult = 6903
 
 	override fun second() = process { a, b -> a.intersect(b) }
-	override val secondResultForTests = 3493
+	override val secondResult = 3493
 }

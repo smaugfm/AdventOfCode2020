@@ -32,6 +32,6 @@ class Day01 : DayTaskBase(1) {
 			?.let { (a, b, c) -> a * b * c}
 	}
 
-	override val firstResultForTests = 355875
-	override val secondResultForTests = 140379120
+	override val firstResult = 355875
+	override val secondResult = 140379120
 }
