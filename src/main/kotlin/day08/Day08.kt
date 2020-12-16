@@ -37,7 +37,7 @@ class Day08 : DayTaskBase(8) {
 	}
 
 	override fun first() = try {
-		exec(puzzleLines)
+		exec(puzzleLines.toList())
 		"No loop"
 	} catch (e: InfiniteLoopException) {
 		e.acc
@@ -46,7 +46,7 @@ class Day08 : DayTaskBase(8) {
 	override val firstResult = 1179
 
 	override fun second(): Any {
-		val lines = puzzleLines
+		val lines = puzzleLines.toList()
 		val linesCopy = lines.toMutableList()
 
 		for ((i, line) in lines.withIndex()) {

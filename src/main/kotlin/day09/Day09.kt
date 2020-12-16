@@ -59,7 +59,7 @@ class Day09 : DayTaskBase(9) {
 			return -1
 		}
 
-		val all = puzzleLines.map(::parseLong)
+		val all = puzzleLines.map(::parseLong).toList()
 		all.indices.forEach { index ->
 			val sublist = all.drop(index)
 			val len = check(firstResult, sublist)

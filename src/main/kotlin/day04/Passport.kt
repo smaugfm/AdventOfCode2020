@@ -1,7 +1,5 @@
 package day04
 
-import common.newLine
-
 class Passport(val fields: Set<PassportField>) {
 	companion object {
 		fun parse(raw: PassportRaw) =
@@ -18,7 +16,7 @@ class PassportRaw(val fields: Set<PassportFieldRaw>) {
 	companion object {
 		fun parse(passportStr: String) =
 			passportStr
-				.replace(newLine, " ")
+				.replace(System.lineSeparator(), " ")
 				.split(Regex("\\s+"))
 				.map { PassportFieldRaw.parse(it) }
 				.toSet()

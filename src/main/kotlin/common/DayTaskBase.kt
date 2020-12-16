@@ -7,11 +7,11 @@ abstract class DayTaskBase(override val day: Int) : IDayTask {
 	}
 
 	protected val puzzleLines by lazy {
-		puzzleInput.split(newLine).filter { it.isNotBlank() }
+		puzzleInput.lineSequence().filter { it.isNotBlank() }
 	}
 
 	protected val puzzleBlocks by lazy {
-		puzzleInput.split(blankLine).filter { it.isNotBlank() }
+		puzzleInput.splitToSequence("\r\n\r\n", "\n\n", "\r\r").filter { it.isNotBlank() }
 	}
 
 	override fun runFirst(): String {

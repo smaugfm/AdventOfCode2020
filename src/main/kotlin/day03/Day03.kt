@@ -23,7 +23,7 @@ class Day03 : DayTaskBase(3) {
 		}
 
 		companion object {
-			fun parse(lines: List<String>): Field =
+			fun parse(lines: Sequence<String>): Field =
 				lines
 					.map { line ->
 						line
@@ -36,6 +36,7 @@ class Day03 : DayTaskBase(3) {
 							}
 							.toBooleanArray()
 					}
+					.toList()
 					.toTypedArray()
 					.let(::Field)
 		}

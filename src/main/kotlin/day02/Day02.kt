@@ -9,7 +9,7 @@ import java.lang.Integer.parseInt
 class Day02 : DayTaskBase(2) {
 	private data class Line(val letter: Char, val min: Int, val max: Int, val sequence: String)
 
-	private fun getLines(): List<Line> =
+	private fun getLines() =
 		puzzleLines
 			.map {
 				val (min, max, letter, sequence) = lineRegex.matchEntire(it)!!.groupValues.drop(1)

@@ -16,7 +16,3 @@ fun Iterable<Int>.product() =
 
 fun Iterable<Long>.product() =
 	this.reduce { a, b -> a * b }
-
-val blankLine = System.lineSeparator() + System.lineSeparator()
-val newLine: String = System.lineSeparator()
-
