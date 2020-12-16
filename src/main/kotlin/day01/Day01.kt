@@ -3,7 +3,7 @@ package day01
 import com.google.auto.service.AutoService
 import common.DayTaskBase
 import common.IDayTask
-import common.product
+import common.cartesianProduct
 import java.lang.Integer.parseInt
 
 @AutoService(IDayTask::class)
@@ -12,7 +12,7 @@ class Day01 : DayTaskBase(1) {
 		return puzzleLines
 			.map(::parseInt)
 			.asSequence()
-			.let { it.product(it) }
+			.let { it.cartesianProduct(it) }
 			.first { (a, b) -> a + b == 2020 }
 			.let { (a, b) -> a * b }
 	}
@@ -21,7 +21,7 @@ class Day01 : DayTaskBase(1) {
 		return puzzleLines
 			.map(::parseInt)
 			.asSequence()
-			.let { it.product(it).product(it) }
+			.let { it.cartesianProduct(it).cartesianProduct(it) }
 			.map { x ->
 				val (y, a) = x
 				val (b, c) = y

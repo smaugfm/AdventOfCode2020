@@ -3,8 +3,7 @@ package day09
 import com.google.auto.service.AutoService
 import common.DayTaskBase
 import common.IDayTask
-import common.product
-import java.lang.Integer.parseInt
+import common.cartesianProduct
 import java.util.*
 import javax.xml.bind.DatatypeConverter.parseLong
 
@@ -29,7 +28,7 @@ class Day09 : DayTaskBase(9) {
 				}.let(::FixedQueue)
 
 		fun check(target: Long, list: Iterable<Long>): Boolean =
-			list.product(list).none { (x, y) -> x + y == target }
+			list.cartesianProduct(list).none { (x, y) -> x + y == target }
 
 		puzzleLines
 			.drop(width)
